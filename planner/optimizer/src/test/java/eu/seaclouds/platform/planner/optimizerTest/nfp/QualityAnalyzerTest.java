@@ -20,9 +20,9 @@ package eu.seaclouds.platform.planner.optimizerTest.nfp;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import org.junit.Assert;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -68,7 +68,7 @@ public class QualityAnalyzerTest {
       QualityInformation qInfo = analyzer.computePerformance(bestSol, topology,
             workload, cloudCharacteristics);
 
-      Assert.assertTrue("Compute performance returned null", qInfo != null);
+      Assert.assertTrue(qInfo != null, "Compute performance returned null");
 
       if (qInfo != null) {
          log.info("Testing performance. Returned application response time is "
@@ -92,10 +92,8 @@ public class QualityAnalyzerTest {
       double availability = analyzer.computeAvailability(bestSol, topology,
             cloudCharacteristics);
 
-      Assert.assertTrue("Compute availability returned an impossible value",
-            availability >= 0.0);
-      Assert.assertTrue("Compute availability returned an impossible value",
-            availability <= 1.0);
+      Assert.assertTrue(availability >= 0.0, "Compute availability returned an impossible value");
+      Assert.assertTrue(availability <= 1.0, "Compute availability returned an impossible value");
 
       log.info("Testing availability. Returned application availability is "
             + availability);
@@ -115,8 +113,7 @@ public class QualityAnalyzerTest {
 
       double cost = analyzer.computeCost(bestSol, cloudCharacteristics);
 
-      Assert.assertTrue("Compute cost returned an impossible value",
-            cost >= 0.0);
+      Assert.assertTrue(cost >= 0.0, "Compute cost returned an impossible value");
 
       log.info("Testing cost. Returned application cost is " + cost);
 
@@ -140,7 +137,7 @@ public class QualityAnalyzerTest {
       HashMap<String, ArrayList<Double>> thresholds = analyzer
             .computeThresholds(bestSol, topology, requirements,
                   cloudCharacteristics);
-      Assert.assertTrue("Compute thresholds returns null", thresholds != null);
+      Assert.assertTrue(thresholds != null, "Compute thresholds returns null");
 
       log.info("Testing thresholds. Returned hashMap is " + thresholds);
 

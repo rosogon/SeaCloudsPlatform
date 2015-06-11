@@ -17,15 +17,16 @@
 
 package eu.seaclouds.platform.dashboard.http;
 
-import com.beust.jcommander.internal.Maps;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-import org.testng.Assert;
-import org.testng.annotations.Test;
-
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.Map;
+
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+import com.google.common.collect.Maps;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 public class HttpRequestBuilderTest {
     

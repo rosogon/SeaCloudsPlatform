@@ -17,9 +17,6 @@
 
 package eu.seaclouds.platform.planner.optimizerTest;
 
-import eu.seaclouds.platform.planner.optimizer.Optimizer;
-import eu.seaclouds.platform.planner.optimizer.heuristics.SearchMethodName;
-import eu.seaclouds.platform.planner.optimizer.util.TOSCAkeywords;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -27,12 +24,17 @@ import java.io.PrintWriter;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import org.junit.Assert;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+
+import eu.seaclouds.platform.planner.optimizer.Optimizer;
+import eu.seaclouds.platform.planner.optimizer.heuristics.SearchMethodName;
+import eu.seaclouds.platform.planner.optimizer.util.TOSCAkeywords;
 
 public class OptimizerTest {
 
@@ -135,11 +137,11 @@ public class OptimizerTest {
 
    private void checkCorrectness(String dam) {
 
-      Assert.assertFalse("Dam was not created, optimize method returns null",
-            dam == null);
+      Assert.assertFalse(
+              dam == null, "Dam was not created, optimize method returns null");
       String damLines[] = dam.split(System.getProperty("line.separator"));
 
-      Assert.assertTrue("Dam was not created", damLines.length > 1);
+      Assert.assertTrue(damLines.length > 1, "Dam was not created");
 
       int numServices = 0;
       int numSuitableServicesFound = 0;
@@ -155,19 +157,15 @@ public class OptimizerTest {
                      && suitableLine.contains(CLOSE_SQUARE_BRACKET)) {
                   String suitableService = suitableLine.substring(0,
                         suitableLine.indexOf(CLOSE_SQUARE_BRACKET));
-                  Assert.assertTrue("Suitable service is the empty string",
-                        suitableService != "");
-                  Assert.assertTrue(
-                        "Suitable service chosen does not belong to the cloud offer",
-                        suitableCloudOffer.contains(suitableService));
+                  Assert.assertTrue(suitableService != "", "Suitable service is the empty string");
+                  Assert.assertTrue(suitableCloudOffer.contains(suitableService), "Suitable service chosen does not belong to the cloud offer");
                   numSuitableServicesFound++;
                }
             }
 
          }
       }
-      Assert.assertEquals("Optimizer did not find any of the services",
-            numServices, numSuitableServicesFound);
+      Assert.assertEquals(numServices, numSuitableServicesFound, "Optimizer did not find any of the services");
 
    }
 
@@ -203,9 +201,8 @@ public class OptimizerTest {
 
       log.debug("Optimizer execution time= "
             + (((double) (finishTime - startTime)) / 1000.0) + " seconds");
-      Assert.assertTrue("Otimizer does not have good Performance. More than "
-            + ((double) MAX_MILLIS_EXECUTING) / 1000.1 + " seconds",
-            (finishTime - startTime) < MAX_MILLIS_EXECUTING);
+      Assert.assertTrue((finishTime - startTime) < MAX_MILLIS_EXECUTING, "Otimizer does not have good Performance. More than "
+                      + (MAX_MILLIS_EXECUTING) / 1000.1 + " seconds");
       log.info("=== TEST for PERFORMANCE of optimizer FINISHED===");
 
    }

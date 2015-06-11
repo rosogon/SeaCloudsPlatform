@@ -32,19 +32,9 @@ limitations under the License.
     <dependencies>
         <dependency>
             <groupId>eu.seaclouds-project</groupId>
-            <artifactId>planner-utils</artifactId>
-            <version>${project.version}</version>
+            <artifactId>toscamodel</artifactId>
+            <version>1.0.0</version>
         </dependency>
     </dependencies>
 
-    <repositories>
-        <repository>
-            <id>tosca-object-model-mvn-repo</id>
-            <url>https://raw.github.com/szenzaro/tosca-object-model/mvn-repo/</url>
-            <snapshots>
-                <enabled>true</enabled>
-                <updatePolicy>always</updatePolicy>
-            </snapshots>
-        </repository>
-    </repositories>
 </project>
