@@ -22,10 +22,17 @@ Getting Started
 A deployment of SeaClouds can be launched using Apache Brooklyn. We currently support deployments against Bring Your
 Own Nodes (BYON) and to all the IaaS provider supported by [Apache jclouds](http://jclouds.org).
 
-# Launching SeaClouds platform
+# Setup your environment
 
-- Download [Apache Brooklyn](https://www.apache.org/dyn/closer.lua/incubator/brooklyn/apache-brooklyn-0.8.0-incubating/apache-brooklyn-0.8.0-incubating-bin.tar.gz) and unpack it 
-- Run Brooklyn with `--catalogAdd seaclouds-catalog.bom` 
+- Download [Apache Brooklyn](https://www.apache.org/dyn/closer.lua/incubator/brooklyn/apache-brooklyn-0.8
+.0-incubating/apache-brooklyn-0.8.0-incubating-bin.tar.gz) and unpack it in your $BROOKLYN_HOME
+- checkout SeaCloudsPlatform project:
+  ```
+  git clone git@github.com:SeaCloudsEU/SeaCloudsPlatform.git`
+  cd SeaCloudsPlatform/byon
+  ```
+- Run Apache Brooklyn from there using something like:
+  `$ BROOKLYN_HOME/bin/brooklyn launch --catalogAdd ../seaclouds-catalog.bom`
 
 ## Deploying SeaClouds on the cloud
 
@@ -40,15 +47,12 @@ Make sure you have [Vagrant](https://www.vagrantup.com/), [Virtual Box](https://
 
 - Configure your local environemnt:
 ```bash
-cd byon
+cd $SEACLOUDS_HOME/byon
 vagrant up
 ```
 This spins up a virtual environment, made up of 2 VMs, that is accessible at `192.168.100.10` and `192.168.100.11`.
 
 Finally, run `SeaClouds Platform on BYON` application template from Apache Brooklyn.
-
-If you prefer you can also launch the platform deployment from CLI
-
 
 ## SeaClouds release 0.7.0-M19
 
@@ -65,7 +69,7 @@ When deploying SeaClouds platform an [Apache Brooklyn](http://brooklyn.io) insta
 workstation, accessible at `http://localhost:8081` by default. Please double-check in nohup.out the correct url.
 
 You may need to update the `privateKeyFile` property in the blueprint to the actual path.
-By default, it points to `~/seaclouds-installer/byon/seaclouds_id_rsa`  but YMMV.
+By default, it points to `./seaclouds_id_rsa`  but YMMV.
 
 For more information, please visit [Apache Brooklyn](https://brooklyn.incubator.apache.org/download/index.html)
 
