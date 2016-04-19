@@ -17,6 +17,7 @@ var Credentials = (function() {
     var LOCATION_GROUP = "add_brooklyn_location_";
     var LOCATION_POLICY = "brooklyn.location";
     var TYPE_CLOUD = Types.Cloud.name;
+    var BASE64_PREFIX = "base64:";
 
     var activeform = undefined;
     var amazonform = Object.create(Forms.Form);
@@ -522,6 +523,10 @@ var Credentials = (function() {
                             }).
                             forEach(function(name) {
                                 var value = cloudnode.properties[name];
+
+                                if (value.startsWith(BASE64_PREFIX)) {
+                                    value = window.atob(value.substring(BASE64_PREFIX.length));
+                                }
                                 location_policy[name] = (value !== undefined)? value : "";
                             });
                             break;
